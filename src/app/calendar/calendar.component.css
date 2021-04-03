@@ -1,0 +1,38 @@
+.img-placeholder {
+    width: 250px;
+    height: 250px;
+    background-color: grey;
+    position: relative;
+}
+
+.event-container {
+    margin-bottom: 2em;
+}
+
+.date-label-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+
+.date-label>span {
+    margin: 0;
+    padding: 0;
+    line-height: 0px;
+}
+
+.date-label {
+    height: 50px;
+    width: 50px;
+    color: white;
+    background-color: black;
+}
+
+.transition-label {
+    width: fit-content;
+}
+
+.number-label {
+    font-size: 1.5em;
+}

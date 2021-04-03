@@ -1,1 +1,23 @@
-<h1>hello world</h1>
+<div class="calendar-space container-fluid py-5">
+    <div class="row row-container justify-content-start">
+        <div class="col-lg-3 col-md-4 event-container d-flex flex-column align-items-center" *ngFor="let event of events">
+            <div class="img-placeholder" [ngStyle]="{'height':imgWidth+'px', 'width':imgWidth+'px'}">
+                <div class="date-label-container d-flex">
+                    <div class="date-label">
+                        <span class="month-label">APR</span><br>
+                        <span class="number-label">27</span>
+                    </div>
+                    <div class="date-label transition-label d-flex align-items-center">
+                        <span>-</span>
+                    </div>
+                    <div class="date-label">
+                        <span class="month-label">APR</span><br>
+                        <span class="number-label">27</span>
+                    </div>
+                </div>
+            </div>
+            <h2>Event Name</h2>
+            <p>Event Location</p>
+        </div>
+    </div>
+</div>
