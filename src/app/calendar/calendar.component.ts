@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { CalendarEvent } from '../utils/calendar-event';
 
 @Component({
   selector: 'app-calendar',
@@ -7,13 +8,22 @@ import { Component, HostListener, OnInit } from '@angular/core';
 })
 export class CalendarComponent implements OnInit {
   imgWidth: any;
-  events: any[];
+  events: CalendarEvent[];
 
   constructor() { }
 
   ngOnInit() {
     this.imgWidth = this.getDisplayWidth(this.getScreenInnerWidth());
-    this.events = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    this.events = [
+      new CalendarEvent(
+        'My Story: Christine Howey with Phyllis Harris',
+        10,
+        'Maltz Museum of Jewish Heritage, 2929 Richmond Rd, Beachwood, OH',
+        new Date('December 17, 1995 16:00:00'),
+        '16:00:00'
+      )
+    ];
+    console.log(this.events);
   }
 
   @HostListener('window:resize', ['$event'])

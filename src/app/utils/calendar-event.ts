@@ -1,19 +1,21 @@
 export class CalendarEvent {
     name: string;
-    date: Date;
+    dateStart: Date;
     timeStart: string;
     timeEnd: string;
+    dateEnd: Date;
     price: number;
     location: string;
     is24HourFormat: boolean;
 
-    constructor(name: string, date: Date, price: number, location: string, timeStart: string, timeEnd?: string, is24HourFormat?: boolean) {
+    constructor(name: string, price: number, location: string, dateStart: Date, timeStart: string, timeEnd?: string, dateEnd?: Date, is24HourFormat?: boolean) {
         this.name = name;
-        this.date = date;
         this.price = price;
         this.location = location;
+        this.dateStart = dateStart;
         this.timeStart = timeStart;
-        this.timeEnd = !!this.timeEnd ? this.timeEnd : '<none>';
+        this.timeEnd = !!timeEnd ? timeEnd : '<none>';
+        this.dateEnd = !!dateEnd ? dateEnd : null;
         this.is24HourFormat = !!this.is24HourFormat ? this.is24HourFormat : false;
     }
 
