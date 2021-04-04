@@ -3,8 +3,14 @@
         <div class="col-sm-12">
             <h1>I'M LOOKING FOR <span class="filter text-primary" [ngbPopover]="primaryCategorySelectContent"
                     [popoverTitle]="primaryCategorySelectTitle">
-                    ANYTHING
+                    {{ (currentPrimaryFilter == '' ? 'anything' : currentPrimaryFilter) | uppercase}}
                 </span>
+                <ng-container *ngFor="let secondaryFilter of currentSecondaryFilters">
+                    , <span class="filter text-primary" [ngbPopover]="editSecondaryContent"
+                        [popoverTitle]="editSecondaryTitle" (click)="setClickedSecondary(secondaryFilter)">
+                        {{secondaryFilter | uppercase}}
+                    </span>
+                </ng-container>
                 &nbsp;&nbsp;&nbsp;
                 <button class="btn btn-outline-primary" [ngbPopover]="secondaryCategorySelectContent"
                     [popoverTitle]="secondaryCategorySelectTitle" [autoClose]="false" triggers="manual" #p="ngbPopover"
@@ -34,39 +40,42 @@
     </div>
 </div>
 
+<!-- Popover templates -->
+
 <ng-template #primaryCategorySelectTitle>
     Or maybe something like...
 </ng-template>
 <ng-template #primaryCategorySelectContent>
     <div class="replacement-filter-container d-flex flex-column">
-        <div><button class="btn btn-outline-secondary">🍔 Food</button></div>
-        <div><button class="btn btn-outline-secondary">👋 Get-togethers</button></div>
-        <div><button class="btn btn-outline-secondary">🎙️🎭 Concerts/Shows</button></div>
-        <div><button class="btn btn-outline-secondary">💓 Safespaces</button></div>
-        <div><button class="btn btn-outline-secondary">⚽ Fun and Games</button></div>
+        <div *ngFor="let category of primaryCategories" (click)="OnPrimaryFilterSelect(category)">
+            <button class="btn btn-outline-secondary">{{category}}</button>
+        </div>
+        <div><button class="btn btn-outline-secondary" (click)="currentPrimaryFilter = ''">Anything</button></div>
         <div><button class="btn btn-outline-secondary">🤔 Oh, nevermind...</button></div>
     </div>
 </ng-template>
 
 <ng-template #secondaryCategorySelectTitle>
-    <div class="d-flex align-items-center justify-content-between" style="width: 100%;">
+    <div class="d-flex align-items-center justify-content-between">
         <div>Something like...</div>
         <div><button class="btn btn-sm btn-outline-secondary" (click)="p.close()"> <b>&times;</b> </button></div>
     </div>
 </ng-template>
 <ng-template #secondaryCategorySelectContent>
     <div class="replacement-filter-container d-flex flex-column">
-        <label for="typeahead-basic">Search for a state:</label>
-        <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" />
+        <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model"
+            (selectItem)="OnSecondaryFilterSelect($event); p.close()" [ngbTypeahead]="search" />
         <hr>
         <pre>Model: {{ model | json }}</pre>
     </div>
 </ng-template>
 
-<!-- <button type="button" class="btn btn-outline-secondary mr-2" ngbPopover="What a great tip!" [autoClose]="false"
-    triggers="manual" #p="ngbPopover" (click)="p.open()" popoverTitle="Pop title">
-    Click me to open a popover
-</button>
-<button type="button" class="btn btn-outline-secondary mr-2" (click)="p.close()">
-    Click me to close a popover
-</button> -->
+<ng-template #editSecondaryTitle>
+    <p>On second thought...</p>
+</ng-template>
+<ng-template #editSecondaryContent>
+    <div class="replacement-filter-container d-flex flex-column">
+        <div><button class="btn btn-outline-secondary">Keep this</button></div>
+        <div><button class="btn btn-outline-secondary" (click)="OnSecondaryFilterRemove()">Remove this</button></div>
+    </div>
+</ng-template>
