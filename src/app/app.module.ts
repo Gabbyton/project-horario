@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SplashComponent } from './splash/splash.component';
+import { PageNavComponent } from './page-nav/page-nav.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { SplashComponent } from './splash/splash.component';
     CalendarComponent,
     FilterSelectComponent,
     NavbarComponent,
-    SplashComponent
+    SplashComponent,
+    PageNavComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
