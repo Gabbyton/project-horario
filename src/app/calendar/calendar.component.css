@@ -36,3 +36,12 @@
 .number-label {
     font-size: 1.5em;
 }
+
+.caption {
+    overflow-y: visible;
+    line-height: normal;
+}
+
+.title {
+    font-weight: bold;
+}

@@ -17,10 +17,13 @@ export class CalendarComponent implements OnInit {
     this.events = [
       new CalendarEvent(
         'My Story: Christine Howey with Phyllis Harris',
+        'assets/events/event-0.png',
         10,
         'Maltz Museum of Jewish Heritage, 2929 Richmond Rd, Beachwood, OH',
-        new Date('December 17, 1995 16:00:00'),
-        '16:00:00'
+        'Maltz Museum of Jewish Heritage',
+        new Date('March 31, 2021 00:00:00'),
+        '16:00:00',
+        new Date('April 2, 2021 00:00:00')
       )
     ];
     console.log(this.events);

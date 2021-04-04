@@ -1,22 +1,30 @@
 export class CalendarEvent {
     name: string;
+    imageURL: string;
     dateStart: Date;
     timeStart: string;
     timeEnd: string;
     dateEnd: Date;
     price: number;
     location: string;
+    shortLocation: string;
     is24HourFormat: boolean;
 
-    constructor(name: string, price: number, location: string, dateStart: Date, timeStart: string, timeEnd?: string, dateEnd?: Date, is24HourFormat?: boolean) {
+    constructor(name: string, imageURL: string, price: number, location: string, shortLocation: string, dateStart: Date, timeStart: string, dateEnd?: Date, timeEnd?: string, is24HourFormat?: boolean) {
         this.name = name;
+        this.imageURL = imageURL;
         this.price = price;
         this.location = location;
+        this.shortLocation = shortLocation;
         this.dateStart = dateStart;
         this.timeStart = timeStart;
         this.timeEnd = !!timeEnd ? timeEnd : '<none>';
         this.dateEnd = !!dateEnd ? dateEnd : null;
         this.is24HourFormat = !!this.is24HourFormat ? this.is24HourFormat : false;
+    }
+
+    public getDefaultShortName(inputLocation: string) {
+        return inputLocation.split(',')[0].trim();
     }
 
     public getTimeString(inputTime: string): string {

@@ -1,23 +1,29 @@
 <div class="calendar-space container-fluid py-5">
     <div class="row row-container justify-content-start">
         <div class="col-lg-3 col-md-4 event-container d-flex flex-column align-items-center" *ngFor="let event of events">
-            <div class="img-placeholder" [ngStyle]="{'height':imgWidth+'px', 'width':imgWidth+'px'}">
+            <div class="img-placeholder" [ngStyle]="{'height':imgWidth+'px', 'width':imgWidth+'px', 'background-image':'url('+event.imageURL+')'}">
                 <div class="date-label-container d-flex">
                     <div class="date-label">
-                        <span class="month-label">APR</span><br>
-                        <span class="number-label">27</span>
+                        <span class="month-label">{{event.dateStart | date:'MMM' | uppercase}}</span><br>
+                        <span class="number-label">{{event.dateStart | date:'dd'}}</span>
                     </div>
-                    <div class="date-label transition-label d-flex align-items-center">
-                        <span>-</span>
-                    </div>
-                    <div class="date-label">
-                        <span class="month-label">APR</span><br>
-                        <span class="number-label">27</span>
-                    </div>
+                    <ng-template [ngIf]="event.dateEnd != null">
+                        <div class="date-label transition-label d-flex align-items-center">
+                            <span>-</span>
+                        </div>
+                        <div class="date-label">
+                            <span class="month-label">{{event.dateEnd | date:'MMM' | uppercase}}</span><br>
+                            <span class="number-label">{{event.dateEnd | date:'dd'}}</span>
+                        </div>
+                    </ng-template>
                 </div>
             </div>
-            <h2>Event Name</h2>
-            <p>Event Location</p>
+            <div class="caption title" [ngStyle]="{'width':imgWidth+'px'}">
+                <p>{{event.name}}</p>
+            </div>
+            <div class="caption" [ngStyle]="{'width':imgWidth+'px'}">
+                <p>{{event.shortLocation}}</p>
+            </div>
         </div>
     </div>
 </div>
