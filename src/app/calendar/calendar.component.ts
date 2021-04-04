@@ -1,5 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CalendarEvent } from '../utils/calendar-event';
+import { Filter } from '../utils/filter';
+import { UiService } from '../utils/ui.service';
 
 @Component({
   selector: 'app-calendar',
@@ -10,7 +12,7 @@ export class CalendarComponent implements OnInit {
   imgWidth: any;
   events: CalendarEvent[];
 
-  constructor() { }
+  constructor(private uiService: UiService) { }
 
   ngOnInit() {
     this.imgWidth = this.getDisplayWidth(this.getScreenInnerWidth());
@@ -18,6 +20,7 @@ export class CalendarComponent implements OnInit {
       new CalendarEvent(
         'My Story: Christine Howey with Phyllis Harris',
         'assets/events/event-0.png',
+        ['wheelchair'],
         10,
         'Maltz Museum of Jewish Heritage, 2929 Richmond Rd, Beachwood, OH',
         'Maltz Museum of Jewish Heritage',
@@ -27,6 +30,10 @@ export class CalendarComponent implements OnInit {
       )
     ];
     console.log(this.events);
+  }
+
+  getIcon(id: string): Filter {
+    return this.uiService.getIcon(id);
   }
 
   @HostListener('window:resize', ['$event'])
