@@ -27,16 +27,15 @@
             <div class="caption title" [ngStyle]="{'width':imgWidth+'px'}">
                 <p>{{event.name}}</p>
             </div>
-
+            <div class="caption location" [ngStyle]="{'width':imgWidth+'px'}">
+                <p>{{event.shortLocation}}</p>
+            </div>
             <div class="caption filter-container" [ngStyle]="{'width':imgWidth+'px'}">
                 <ul class="list-inline">
                     <li class="list-inline-item" *ngFor="let filter of event.filters">
                         <i [class]="getIcon(filter).iconClass"></i>
                     </li>
                 </ul>
-            </div>
-            <div class="caption location" [ngStyle]="{'width':imgWidth+'px'}">
-                <p>{{event.shortLocation}}</p>
             </div>
         </div>
     </div>
