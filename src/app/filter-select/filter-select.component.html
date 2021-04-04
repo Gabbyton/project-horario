@@ -38,7 +38,12 @@
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-sm-12">
-            <h1>STARTING <span class="filter text-warning">THIS MARCH</span></h1>
+            <h1>STARTING
+                <span class="filter text-warning" [ngbPopover]="chooseDateContent"
+                    [popoverTitle]="chooseDateTitle">
+                    {{ currentTimeRangeString | uppercase }}
+                </span>
+            </h1>
         </div>
     </div>
 </div>
@@ -105,5 +110,21 @@
 <ng-template #editFilterTitle>
     <div class="d-flex justify-content-center align-items-center">
         <p>{{ isAddingFilter ? 'It needs to be..' : 'Or it probably should be...' }}</p>
+    </div>
+</ng-template>
+
+<ng-template #chooseDateTitle>
+    <div class="d-flex align-items-center">
+        or how about...
+    </div>
+</ng-template>
+<ng-template #chooseDateContent>
+    <div class="replacement-filter-container d-flex flex-column">
+        <div><button class="btn btn-outline-secondary" (click)="OnDateChange(true, 'This Weekend')">This weekend</button></div>
+        <div><button class="btn btn-outline-secondary" (click)="OnDateChange(true, 'Next Week')">Next week</button></div>
+        <div><button class="btn btn-outline-secondary" (click)="OnDateChange(true, 'Next Month')">Next month</button></div>
+        <!-- TODO: change content to show selected dates -->
+        <div><button class="btn btn-outline-secondary" (click)="OnDateChange(true, 'Apr 4, 2021 ending at Apr 5 2021')">Between Certain Dates</button></div>
+        <div><button class="btn btn-outline-secondary">Nah, this is good...</button></div>
     </div>
 </ng-template>
