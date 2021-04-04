@@ -1,5 +1,14 @@
+.filter-container {
+    background-color: #ddd;
+}
+
 .filter {
     text-decoration-line: underline;
     text-decoration-style: double;
     cursor: pointer;
+}
+
+.replacement-filter-container>div>button {
+    width: 100%;
+    margin-bottom: 1em;
 }

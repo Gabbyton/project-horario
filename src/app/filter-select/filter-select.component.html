@@ -1,14 +1,72 @@
-<div class="container py-5">
+<div class="container-fluid filter-container py-5">
     <div class="row mb-4">
         <div class="col-sm-12">
-            <h1>I'M LOOKING FOR <span class="filter text-primary">ANYTHING</span>&nbsp;&nbsp;&nbsp;<button
-                class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> &nbsp;and more</button></h1>
+            <h1>I'M LOOKING FOR <span class="filter text-primary" [ngbPopover]="primaryCategorySelectContent"
+                    [popoverTitle]="primaryCategorySelectTitle">
+                    ANYTHING
+                </span>
+                &nbsp;&nbsp;&nbsp;
+                <button class="btn btn-outline-primary" [ngbPopover]="secondaryCategorySelectContent"
+                    [popoverTitle]="secondaryCategorySelectTitle" [autoClose]="false" triggers="manual" #p="ngbPopover"
+                    (click)="p.isOpen()? p.close() : p.open()">
+                    <i class="bi bi-plus-square"></i>
+                    &nbsp;and more
+                </button>
+            </h1>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
             <h2>and it has to be <span class="filter text-success">fun</span>&nbsp;&nbsp;&nbsp;<button
-                class="btn btn-outline-success"><i class="bi bi-plus-square"></i> &nbsp;and more</button></h2>
+                    class="btn btn-outline-success">
+                    <i class="bi bi-plus-square"></i> &nbsp;and more
+                </button>
+            </h2>
         </div>
     </div>
 </div>
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>STARTING <span class="filter text-warning">THIS MARCH</span></h1>
+        </div>
+    </div>
+</div>
+
+<ng-template #primaryCategorySelectTitle>
+    Or maybe something like...
+</ng-template>
+<ng-template #primaryCategorySelectContent>
+    <div class="replacement-filter-container d-flex flex-column">
+        <div><button class="btn btn-outline-secondary">🍔 Food</button></div>
+        <div><button class="btn btn-outline-secondary">👋 Get-togethers</button></div>
+        <div><button class="btn btn-outline-secondary">🎙️🎭 Concerts/Shows</button></div>
+        <div><button class="btn btn-outline-secondary">💓 Safespaces</button></div>
+        <div><button class="btn btn-outline-secondary">⚽ Fun and Games</button></div>
+        <div><button class="btn btn-outline-secondary">🤔 Oh, nevermind...</button></div>
+    </div>
+</ng-template>
+
+<ng-template #secondaryCategorySelectTitle>
+    <div class="d-flex align-items-center justify-content-between" style="width: 100%;">
+        <div>Something like...</div>
+        <div><button class="btn btn-sm btn-outline-secondary" (click)="p.close()"> <b>&times;</b> </button></div>
+    </div>
+</ng-template>
+<ng-template #secondaryCategorySelectContent>
+    <div class="replacement-filter-container d-flex flex-column">
+        <label for="typeahead-basic">Search for a state:</label>
+        <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" />
+        <hr>
+        <pre>Model: {{ model | json }}</pre>
+    </div>
+</ng-template>
+
+<!-- <button type="button" class="btn btn-outline-secondary mr-2" ngbPopover="What a great tip!" [autoClose]="false"
+    triggers="manual" #p="ngbPopover" (click)="p.open()" popoverTitle="Pop title">
+    Click me to open a popover
+</button>
+<button type="button" class="btn btn-outline-secondary mr-2" (click)="p.close()">
+    Click me to close a popover
+</button> -->
