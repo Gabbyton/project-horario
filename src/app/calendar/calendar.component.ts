@@ -16,19 +16,23 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit() {
     this.imgWidth = this.getDisplayWidth(this.getScreenInnerWidth());
-    this.events = [
-      new CalendarEvent(
-        'My Story: Christine Howey with Phyllis Harris',
-        'assets/events/event-0.png',
-        ['wheelchair'],
-        10,
-        'Maltz Museum of Jewish Heritage, 2929 Richmond Rd, Beachwood, OH',
-        'Maltz Museum of Jewish Heritage',
-        new Date('March 31, 2021 00:00:00'),
-        '16:00:00',
-        new Date('April 2, 2021 00:00:00')
+    this.events = [];
+    for (let index = 1; index <= 10; index++) {
+      this.events.push(
+        new CalendarEvent(
+          'My Story: Christine Howey with Phyllis Harris',
+          'assets/events/event-0.png',
+          ['food'],
+          ['wheelchair'],
+          10,
+          'Maltz Museum of Jewish Heritage, 2929 Richmond Rd, Beachwood, OH',
+          'Maltz Museum of Jewish Heritage',
+          new Date('March 31, 2021 00:00:00'),
+          '16:00:00',
+          new Date('April 2, 2021 00:00:00')
+        )
       )
-    ];
+    }
     console.log(this.events);
   }
 

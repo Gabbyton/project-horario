@@ -1,6 +1,7 @@
 export class CalendarEvent {
     name: string;
     imageURL: string;
+    categories: string[];
     filters: string[];
     dateStart: Date;
     timeStart: string;
@@ -11,9 +12,10 @@ export class CalendarEvent {
     shortLocation: string;
     is24HourFormat: boolean;
 
-    constructor(name: string, imageURL: string, filters: string[], price: number, location: string, shortLocation: string, dateStart: Date, timeStart: string, dateEnd?: Date, timeEnd?: string, is24HourFormat?: boolean) {
+    constructor(name: string, imageURL: string, categories: string[], filters: string[], price: number, location: string, shortLocation: string, dateStart: Date, timeStart: string, dateEnd?: Date, timeEnd?: string, is24HourFormat?: boolean) {
         this.name = name;
         this.imageURL = imageURL;
+        this.categories = categories;
         this.filters = filters;
         this.price = price;
         this.location = location;
