@@ -8,12 +8,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FilterSelectComponent } from './filter-select/filter-select.component';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SplashComponent } from './splash/splash.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
-    FilterSelectComponent
+    FilterSelectComponent,
+    NavbarComponent,
+    SplashComponent
   ],
   imports: [
     BrowserModule,

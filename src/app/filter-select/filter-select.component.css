@@ -2,6 +2,10 @@
     background-color: #ddd;
 }
 
+.container-fluid {
+    background-image: url('/assets/stripes-light.png');
+}
+
 .filter {
     text-decoration-line: underline;
     text-decoration-style: double;
