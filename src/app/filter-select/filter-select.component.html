@@ -3,12 +3,12 @@
         <div class="col-sm-12">
             <h1>I'M LOOKING FOR <span class="filter text-primary" [ngbPopover]="primaryCategorySelectContent"
                     [popoverTitle]="primaryCategorySelectTitle">
-                    {{ (currentPrimaryFilter == '' ? 'anything' : currentPrimaryFilter) | uppercase}}
+                    {{ (currentPrimaryCategory == '' ? 'anything' : currentPrimaryCategory) | uppercase}}
                 </span>
-                <ng-container *ngFor="let secondaryFilter of currentSecondaryFilters">
+                <ng-container *ngFor="let secondaryCategory of currentSecondaryCategories">
                     , <span class="filter text-primary" [ngbPopover]="editSecondaryContent"
-                        [popoverTitle]="editSecondaryTitle" (click)="setClickedSecondary(secondaryFilter)">
-                        {{secondaryFilter | uppercase}}
+                        [popoverTitle]="editSecondaryTitle" (click)="setClickedSecondary(secondaryCategory)">
+                        {{secondaryCategory | uppercase}}
                     </span>
                 </ng-container>
                 &nbsp;&nbsp;&nbsp;
@@ -23,8 +23,11 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <h2>and it has to be <span class="filter text-success">fun</span>&nbsp;&nbsp;&nbsp;<button
-                    class="btn btn-outline-success">
+            <h2>and it has to be <span class="filter text-success" (click)="isAddingFilter = false"
+                    [ngbPopover]="editFilterContent" [popoverTitle]="editFilterTitle">fun</span>
+                &nbsp;&nbsp;&nbsp;
+                <button class="btn btn-outline-success" (click)="isAddingFilter = true" [ngbPopover]="editFilterContent"
+                    [popoverTitle]="editFilterTitle">
                     <i class="bi bi-plus-square"></i> &nbsp;and more
                 </button>
             </h2>
@@ -50,7 +53,7 @@
         <div *ngFor="let category of primaryCategories" (click)="OnPrimaryFilterSelect(category)">
             <button class="btn btn-outline-secondary">{{category}}</button>
         </div>
-        <div><button class="btn btn-outline-secondary" (click)="currentPrimaryFilter = ''">Anything</button></div>
+        <div><button class="btn btn-outline-secondary" (click)="currentPrimaryCategory = ''">Anything</button></div>
         <div><button class="btn btn-outline-secondary">🤔 Oh, nevermind...</button></div>
     </div>
 </ng-template>
@@ -64,9 +67,7 @@
 <ng-template #secondaryCategorySelectContent>
     <div class="replacement-filter-container d-flex flex-column">
         <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model"
-            (selectItem)="OnSecondaryFilterSelect($event); p.close()" [ngbTypeahead]="search" />
-        <hr>
-        <pre>Model: {{ model | json }}</pre>
+            (selectItem)="OnSecondaryCategorySelect($event); p.close()" [ngbTypeahead]="search" />
     </div>
 </ng-template>
 
@@ -76,6 +77,33 @@
 <ng-template #editSecondaryContent>
     <div class="replacement-filter-container d-flex flex-column">
         <div><button class="btn btn-outline-secondary">Keep this</button></div>
-        <div><button class="btn btn-outline-secondary" (click)="OnSecondaryFilterRemove()">Remove this</button></div>
+        <div><button class="btn btn-outline-secondary" (click)="OnSecondaryCategoryRemove()">Remove this</button></div>
+    </div>
+</ng-template>
+
+<ng-template #editFilterTitle>
+    <div class="d-flex justify-content-center align-items-center">
+        <p>{{ isAddingFilter ? 'It needs to be..' : 'Or it probably should be...' }}</p>
+    </div>
+</ng-template>
+<ng-template #editFilterContent>
+    <div class="replacement-filter-container d-flex flex-column">
+        <!-- TODO: create window for choosing the area -->
+        <div><button class="btn btn-outline-secondary">In a Specific Area</button></div>
+        <!-- TODO: create window for choosing the distance -->
+        <div><button class="btn btn-outline-secondary">A Certain Distance</button></div>
+        <div><button class="btn btn-outline-secondary">Wheelchair Accessible</button></div>
+        <!-- TODO: create window for checking accessibility filters -->
+        <div><button class="btn btn-outline-secondary">Accessible for something specific</button></div>
+        <hr>
+        <div *ngIf="!isAddingFilter && currentFilters.length > 1"><button class="btn btn-outline-secondary">On second
+                thought, remove this</button></div>
+        <div><button class="btn btn-outline-secondary">Oh, nevermind...</button></div>
+    </div>
+</ng-template>
+
+<ng-template #editFilterTitle>
+    <div class="d-flex justify-content-center align-items-center">
+        <p>{{ isAddingFilter ? 'It needs to be..' : 'Or it probably should be...' }}</p>
     </div>
 </ng-template>

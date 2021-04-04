@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, OperatorFunction } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { Filter } from '../utils/filter';
 
 @Component({
   selector: 'app-filter-select',
@@ -10,10 +11,12 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 export class FilterSelectComponent implements OnInit {
 
   public model: any;
-  currentPrimaryFilter: string;
-  currentSecondaryFilters: string[];
+  currentPrimaryCategory: string;
+  currentSecondaryCategories: string[];
+  currentFilters: Filter[]; // TODO: create hierarchy of objects with interfaces to account for specific needs
 
   clickedSecondary: string;
+  isAddingFilter: boolean;
 
   // TODO: prefetch array of categories
   // TODO: make primary category model separating long name, short name and emoji
@@ -50,25 +53,30 @@ export class FilterSelectComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.currentSecondaryFilters = [];
-    this.clickedSecondary = !!this.currentSecondaryFilters[0] ? this.currentSecondaryFilters[0]: '';
-    this.currentPrimaryFilter = '';
+    this.currentSecondaryCategories = [];
+    this.currentFilters = [];
+    this.clickedSecondary = !!this.currentSecondaryCategories[0] ? this.currentSecondaryCategories[0]: '';
+    this.currentPrimaryCategory = '';
+    this.isAddingFilter = false;
   }
 
   OnPrimaryFilterSelect(newPrimaryFilterDisplay: string) {
-    this.currentPrimaryFilter = newPrimaryFilterDisplay;
+    this.currentPrimaryCategory = newPrimaryFilterDisplay;
   }
 
-  OnSecondaryFilterSelect(item) {  
-    this.currentSecondaryFilters.push(item.item);
+  OnSecondaryCategorySelect(item) {  
+    this.currentSecondaryCategories.push(item.item);
   }
 
   setClickedSecondary(newClickedSecondary: string) {
     this.clickedSecondary = newClickedSecondary;
   }
 
-  OnSecondaryFilterRemove() {  
-    this.currentSecondaryFilters.splice(this.currentSecondaryFilters.indexOf(this.clickedSecondary),1);
+  OnSecondaryCategoryRemove() {  
+    this.currentSecondaryCategories.splice(this.currentSecondaryCategories.indexOf(this.clickedSecondary),1);
+  }
+
+  OnFilterChange() {
   }
  
 }
