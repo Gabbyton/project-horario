@@ -2,6 +2,7 @@
     width: 250px;
     height: 250px;
     background-color: grey;
+    background-repeat: no-repeat;
     position: relative;
 }
 
@@ -9,11 +10,22 @@
     margin-bottom: 2em;
 }
 
-.date-label-container {
+.inner-label {
     position: absolute;
-    top: 0;
-    left: 0;
+}
+
+.date-label-container {
+    top: -10px;
+    left: -10px;
     text-align: center;
+}
+
+.price-label-container {
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    color: white;
+    padding: 0.25em;
 }
 
 .date-label>span {

@@ -1,8 +1,10 @@
 <div class="calendar-space container-fluid py-5">
     <div class="row row-container justify-content-start">
-        <div class="col-lg-3 col-md-4 event-container d-flex flex-column align-items-center" *ngFor="let event of events">
-            <div class="img-placeholder" [ngStyle]="{'height':imgWidth+'px', 'width':imgWidth+'px', 'background-image':'url('+event.imageURL+')'}">
-                <div class="date-label-container d-flex">
+        <div class="col-lg-3 col-md-4 event-container d-flex flex-column align-items-center"
+            *ngFor="let event of events">
+            <div class="img-placeholder"
+                [ngStyle]="{'height':imgWidth+'px', 'width':imgWidth+'px', 'background-image':'url('+event.imageURL+')', 'background-size':imgWidth+'px'}">
+                <div class="inner-label date-label-container d-flex">
                     <div class="date-label">
                         <span class="month-label">{{event.dateStart | date:'MMM' | uppercase}}</span><br>
                         <span class="number-label">{{event.dateStart | date:'dd'}}</span>
@@ -17,11 +19,20 @@
                         </div>
                     </ng-template>
                 </div>
+                <div class="inner-label price-label-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-cash-stack" viewBox="0 0 16 16">
+                        <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                        <path
+                            d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
+                    </svg>
+                    {{event.price | currency}}
+                </div>
             </div>
             <div class="caption title" [ngStyle]="{'width':imgWidth+'px'}">
                 <p>{{event.name}}</p>
             </div>
-            <div class="caption" [ngStyle]="{'width':imgWidth+'px'}">
+            <div class="caption location" [ngStyle]="{'width':imgWidth+'px'}">
                 <p>{{event.shortLocation}}</p>
             </div>
         </div>
