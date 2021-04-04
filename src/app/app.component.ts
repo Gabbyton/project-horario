@@ -7,7 +7,7 @@ import { UiService } from './utils/ui.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'horario';
+  title = 'Hora';
 
   constructor(private uiService: UiService) {}
 
