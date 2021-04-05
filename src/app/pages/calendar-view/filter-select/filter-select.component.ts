@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, OperatorFunction } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { Filter } from '../utils/filter';
+import { Filter } from '../../../utils/filter';
 import { DatePipe } from '@angular/common';
 
 @Component({

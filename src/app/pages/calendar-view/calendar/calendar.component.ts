@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { CalendarEvent } from '../utils/calendar-event';
-import { Filter } from '../utils/filter';
-import { UiService } from '../utils/ui.service';
+import { CalendarEvent } from '../../../utils/calendar-event';
+import { Filter } from '../../../utils/filter';
+import { UiService } from '../../../utils/ui.service';
 
 @Component({
   selector: 'app-calendar',
@@ -33,7 +33,6 @@ export class CalendarComponent implements OnInit {
         )
       )
     }
-    console.log(this.events);
   }
 
   getIcon(id: string): Filter {
@@ -43,14 +42,10 @@ export class CalendarComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.imgWidth = this.getDisplayWidth(this.getScreenInnerWidth());
-    console.log(window.innerWidth);
-    console.log(this.imgWidth);
   }
 
   private getDisplayWidth(screenWidth: number): number {
-    console.log(this.getScreenInnerWidth());
     let computedWidth = (0.07 * screenWidth) + 142.86;
-    console.log(computedWidth);
     return computedWidth;
   }
 
