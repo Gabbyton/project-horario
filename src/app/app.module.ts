@@ -12,6 +12,7 @@ import { NavbarComponent } from './pages/calendar-view/navbar/navbar.component';
 import { SplashComponent } from './pages/calendar-view/splash/splash.component';
 import { PageNavComponent } from './pages/calendar-view/page-nav/page-nav.component';
 import { FooterComponent } from './pages/calendar-view/footer/footer.component';
+import { AddEventComponent } from './pages/add-event-view/add-event/add-event.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FooterComponent } from './pages/calendar-view/footer/footer.component';
     NavbarComponent,
     SplashComponent,
     PageNavComponent,
-    FooterComponent
+    FooterComponent,
+    AddEventComponent
   ],
   imports: [
     BrowserModule,
