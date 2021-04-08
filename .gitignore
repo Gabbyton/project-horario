@@ -45,3 +45,5 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# protect credentials by ignoring environment updates
+environment.ts
